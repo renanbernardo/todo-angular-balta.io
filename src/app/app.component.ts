@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Todo } from 'src/models/todo.model';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-root',
@@ -66,6 +65,10 @@ export class AppComponent {
 
   load() {
     const data = localStorage.getItem('todos');
-    this.todos = JSON.parse(data);
+    if (data) {
+      this.todos = JSON.parse(data);
+    } else {
+      this.todos = []
+    }
   }
 }
